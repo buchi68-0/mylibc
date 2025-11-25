@@ -1,0 +1,19 @@
+/*
+** EPITECH PROJECT, 2025
+** mylibc
+** File description:
+** mystrlen
+*/
+
+#include "mylibc.h"
+
+ssize_t mystrlen(const char *str)
+{
+    ssize_t returned = 0;
+
+    if (!str)
+        return (ssize_t)-1;
+    while (str[returned])
+        returned++;
+    return returned;
+}
