@@ -22,7 +22,7 @@ static void get_thing(unsigned long long *dst,
     int c)
 {
     (*dst) = (unsigned char)c;
-    for (int i = 0; i <= sizeof(long long) >> i; i++)
+    for (int i = 0; 1 < sizeof(long long) >> i; i++)
         (*dst) = (*dst) | (*dst) << (8 << i);
     return;
 }
