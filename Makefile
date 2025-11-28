@@ -20,12 +20,12 @@ TEST_SRC = tests/test_one.c
 OBJ = $(SRC:.c=.o)
 
 all : $(OBJ)
-	ar rc "mylibc.a" $(OBJ)
+	ar rc "libmylibc.a" $(OBJ)
 
 re : fclean all
 
 fclean : clean
-	rm -f "mylibc.a"
+	rm -f "libmylibc.a"
 	rm -f unit_tests*
 
 clean :
