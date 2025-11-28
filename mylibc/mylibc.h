@@ -17,4 +17,6 @@ void *mymemmem(const void *, size_t, const void *, size_t);
 char *mystrstr(const char *, const char *);
 char *mystrdup(const char *);
 char *mystrcpy(char *, const char *);
+int mystrncmp(const char *s1, const char *s2, size_t n);
+int mystrcmp(const char *s1, const char *s2);
 #endif
