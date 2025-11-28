@@ -6,6 +6,7 @@
 */
 
 #include "mylibc.h"
+#include <malloc.h>
 
 char *mystrcpy(char *dst, const char *src)
 {

@@ -13,7 +13,6 @@ ssize_t mystrlen(const char *str)
 
     if (!str)
         return (ssize_t)-1;
-    while (str[returned])
-        returned++;
+    for (; str[returned]; returned++);
     return returned;
 }

@@ -35,7 +35,7 @@ char *mystrstr(const char *haystack, const char *needle)
     size_t hs_len = mystrlen(haystack);
     size_t ne_len = mystrlen(needle);
 
-    if (!haystack || !needle || usne[0] == '\0')
+    if (!haystack || !needle || ne_len == 0)
         return (char *)(void *)(ushs);
     if (ne_len > hs_len)
         return NULL;

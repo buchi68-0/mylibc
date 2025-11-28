@@ -8,6 +8,12 @@
 SRC = mystrlen.c	\
 	mymemset.c	\
 	mycalloc.c	\
+	mystrnlen.c	\
+	mymemmem.c	\
+	mystrdup.c	\
+
+CC := clang
+CFLAGS := 
 
 TEST_SRC = tests/test_one.c
 
@@ -34,3 +40,10 @@ tests_run : unit_tests
 coverage :
 	gcovr --exclude tests/ --gcov-executable "llvm-cov gcov"
 	gcovr --exclude tests/ --branches --gcov-executable "llvm-cov gcov"
+
+debug : CC := epiclang
+debug : CFLAGS := -g
+debug : re
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@

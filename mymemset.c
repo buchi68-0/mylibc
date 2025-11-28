@@ -8,30 +8,31 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
+#include "private_mylibc.h"
 
 static void *short_ver(void *dst, int c, size_t n)
 {
-    unsigned char *ptr = (unsigned char *)dst;
+    uchar_t *ptr = (uchar_t *)dst;
 
     for (size_t i = 0; i < n; i++)
         ptr[i] = c;
     return dst;
 }
 
-static void get_thing(unsigned long long *dst,
+static void get_thing(ull_t *dst,
     int c)
 {
-    (*dst) = (unsigned char)c;
-    for (int i = 0; 1 < sizeof(long long) >> i; i++)
+    (*dst) = (uchar_t)c;
+    for (int i = 0; 1 < sizeof(ull_t) >> i; i++)
         (*dst) = (*dst) | (*dst) << (8 << i);
     return;
 }
 
 static void *handle_high(uintptr_t ptr, int c, size_t n)
 {
-    unsigned long long *ltmp = (unsigned long long *)ptr;
-    size_t sh_len = n / sizeof(long long);
-    unsigned long long thing;
+    ull_t *ltmp = (ull_t *)ptr;
+    size_t sh_len = n / sizeof(ull_t);
+    ull_t thing;
 
     get_thing(&thing, c);
     for (size_t i = 0; i < sh_len; i++)
@@ -42,18 +43,20 @@ static void *handle_high(uintptr_t ptr, int c, size_t n)
 void *mymemset(void *dst, int c, size_t n)
 {
     uintptr_t ptr = (uintptr_t)dst;
-    unsigned char *tmp = dst;
+    uchar_t *tmp = dst;
 
-    if (n <= 2 * sizeof(long long))
+    if (!dst)
+        return NULL;
+    if (n <= 2 * sizeof(ull_t))
         return short_ver(dst, c, n);
-    while (ptr % sizeof(long long) != 0) {
+    while (ptr % sizeof(ull_t) != 0) {
         (*tmp) = c;
         tmp++;
         ptr++;
         n--;
     }
-    tmp = (unsigned char *)handle_high(ptr, c, n);
-    for (size_t i = 0; i < n % sizeof(long long); i++)
+    tmp = (uchar_t *)handle_high(ptr, c, n);
+    for (size_t i = 0; i < n % sizeof(ull_t); i++)
         tmp[i] = c;
     return dst;
 }
