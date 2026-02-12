@@ -6,7 +6,7 @@
 ** finds needle in haystack
 */
 
-#include "mylibc.h"
+#include "../includes/mylibc.h"
 
 void *mymemmem(const void *haystack, size_t hs_len,
     const void *needle, size_t ne_len)

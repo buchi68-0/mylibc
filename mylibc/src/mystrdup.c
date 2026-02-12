@@ -5,7 +5,7 @@
 ** mystrdup
 */
 
-#include "mylibc.h"
+#include "../includes/mylibc.h"
 #include <malloc.h>
 
 char *mystrcpy(char *dst, const char *src)

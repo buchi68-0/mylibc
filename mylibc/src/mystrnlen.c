@@ -5,7 +5,7 @@
 ** mystrnlen
 */
 
-#include "mylibc.h"
+#include "../includes/mylibc.h"
 
 ssize_t mystrnlen(const char *str, size_t max_len)
 {

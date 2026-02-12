@@ -6,7 +6,7 @@
 ** is buggy, please don't use right now
 */
 
-#include "mylibc.h"
+#include "../includes/mylibc.h"
 #include <stdint.h>
 
 static const unsigned long long STRLENCONST1 = 0x0101010101010101ULL;
