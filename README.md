@@ -1,5 +1,10 @@
 # mylibc - reproduction of the C standard library, according the EPITECH's coding style
-[![C99](https://www.c-language.org/logo.svg){ width=100px }](https://www.c-language.org/)
+<img
+  src="https://www.c-language.org/logo.svg"
+  alt="C logo"
+  width=100px
+  height=100px
+/>
 
 > [!TIP]
 > This project is only aviable on Linux, and maybe on MacOS
