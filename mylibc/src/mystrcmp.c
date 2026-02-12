@@ -14,7 +14,7 @@ int mystrcmp(const char *s1, const char *s2)
     const unsigned char *u2 = (const unsigned char *)s2;
 
     if (!s1 || !s2)
-        (s1 == NULL) * 1 + (s2 == NULL) * -1;
+        return (s1 == NULL) - (s2 == NULL);
     for (; u1[i] || u2[i]; i++)
         if (u1[i] != u2[i])
             return (u1[i] - u2[i]);
@@ -28,7 +28,7 @@ int mystrncmp(const char *s1, const char *s2, size_t n)
     const unsigned char *u2 = (const unsigned char *)s2;
 
     if (!s1 || !s2)
-        (s1 == NULL) * 1 + (s2 == NULL) * -1;
+        return (s1 == NULL) - (s2 == NULL);
     for (; (u1[i] || u2[i]) && i < n; i++)
         if (u1[i] != u2[i])
             return (u1[i] - u2[i]);

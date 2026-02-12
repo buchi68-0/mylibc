@@ -33,3 +33,28 @@ char *mystrdup(const char *str)
     mystrcpy(r, str);
     return r;
 }
+
+char *mystrcat(char *dst, const char *src)
+{
+    if (!dst || !src)
+        return dst;
+    mystrcpy(dst + mystrlen(dst), src);
+    return dst;
+}
+
+char *mystrconcat(char const *s1, const char *s2)
+{
+    ssize_t len = mystrlen(s1) + mystrlen(s2) + 1;
+    char *r = NULL;
+
+    if (!s1)
+        return mystrdup(s2);
+    if (!s2)
+        return mystrdup(s1);
+    r = mycalloc(len, sizeof(char));
+    if (!r)
+        return NULL;
+    mystrcpy(r, s1);
+    mystrcat(r, s2);
+    return r;
+}
