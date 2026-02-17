@@ -7,7 +7,7 @@
 
 #include <criterion/criterion.h>
 #include <stdio.h>
-#include "../includes/mylibc.h"
+#include "../includes/../includes/mylibc.h"
 
 Test(mystrlen, testnull)
 {

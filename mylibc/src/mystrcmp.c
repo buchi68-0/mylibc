@@ -29,7 +29,7 @@ int mystrncmp(const char *s1, const char *s2, size_t n)
 
     if (!s1 || !s2)
         return (s1 == NULL) - (s2 == NULL);
-    for (; (u1[i] || u2[i]) && i < n; i++)
+    for (; i < n && (u1[i] || u2[i]); i++)
         if (u1[i] != u2[i])
             return (u1[i] - u2[i]);
     return 0;

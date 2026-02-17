@@ -34,7 +34,7 @@ char *mystrdup(const char *str)
     return r;
 }
 
-char *mystrcat(char *dst, const char *src)
+char *mystrcat(char *restrict dst, const char *restrict src)
 {
     if (!dst || !src)
         return dst;

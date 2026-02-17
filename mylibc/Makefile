@@ -5,20 +5,25 @@
 ## compiles
 ##
 
-SRC = src/mystrlen.c	\
-	src/mymemset.c	\
-	src/mycalloc.c	\
-	src/mystrnlen.c	\
-	src/mymemmem.c	\
-	src/mystrdup.c	\
-	src/mystrcmp.c	\
-	src/newstrlen.c	\
-	src/mystrchr.c	\
+SRC = 	src/mystrlen.c			\
+		src/mymemset.c			\
+		src/mycalloc.c			\
+		src/mystrnlen.c			\
+		src/mymemmem.c			\
+		src/mystrdup.c			\
+		src/mystrcmp.c			\
+		src/newstrlen.c			\
+		src/mystrchr.c			\
+		src/mystrncopycat.c		\
+		src/mystrtointegers.c	\
 
 CC := clang
 CFLAGS := 
 
-TEST_SRC = tests/test_one.c
+TEST_SRC = tests/test_one.c	\
+	tests/test_mystrchr.c	\
+	tests/test_mystrcpy.c	\
+	tests/test_mystrlen.c	\
 
 OBJ = $(SRC:.c=.o)
 

@@ -3,7 +3,6 @@
 ** mylibc
 ** File description:
 ** mystrlen; using unsigned long long to go faster
-** is buggy, please don't use right now
 */
 
 #include "../includes/mylibc.h"

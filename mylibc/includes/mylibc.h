@@ -10,97 +10,126 @@
     #include <stddef.h>
     #include <sys/types.h>
 
-// set's each byte of buffer to c for n bytes
+/* sets the next n bytes of buf to the byte c */
 void *mymemset(void *buf, int c, size_t n);
 
-// get's length of string "str", returns -1 in case of errors
+/* returns the length of the string str. Returns -1 if str is NULL */
 ssize_t mystrlen(const char *str);
 
-// get's length of string "str", returns -1 in case of errors [experimental]
+/* [experimental] returns the length of the string str faster */
 ssize_t opt_mystrlen(const char *str);
 
-// returns the minimum between n, and the length of the string
+/* returns the minimum between the length of the string str and n */
 ssize_t mystrnlen(const char *str, size_t n);
 
 /*
-* allocates a block of size nelem * size,
-* all bytes are being initialised to 0
+* returns a buffer of nelem elements of size size allocated by malloc
+* all bytes are set to 0
 */
 void *mycalloc(size_t nelem, size_t size);
 
-// finds needle in the haystack. If this fails, returns NULL
+/*
+* finds the sub block "needle" in the block "haystack"
+* because it uses void *s, it needs the length of each blocks
+*/
 void *mymemmem(const void *haystack, size_t haystacklen,
     const void *needle, size_t needlelen);
 
-/*
-* finds the substring needle in the string haystack,
-* if this fails, returns NULL
-*/
+/* finds the substring needle in the string haystack */
 char *mystrstr(const char *haystack, const char *needle);
 
-// copies str into a dynamically allocated string
+/* copies the string str into a dynamically allocated block */
 char *mystrdup(const char *str);
 
-/*
-* copies the string dst into src.
-* The caller is responsible for allocating at least mystrlen(dst) bytes for src
-*/
-char *mystrcpy(char *src, const char *dst);
+/* copies at most n bytes of str into a dynamically allocated block */
+char *mystrndup(const char *str, size_t n);
 
 /*
-* compares both s1 and s2 strings to up to n bytes (or their respective ends).
-* If the strings are equal returns 0
-* if s1 is superior to s2, returns a positive number
-* if s2 is superior to s2, returns a negative number
+* copies directly the string src at the pointer dst
+* the caller is responsible for having enough size in dst
+*/
+char *mystrcpy(char *dst, const char *src);
+
+/*
+* copies at most n bytes from src to dst
+* the caller is responsible for having enough size in dst
+* for mystrnlen(src, n) bytes at least
+* If the pointer got to n, there will be no terminating NUL byte in dst
+*/
+char *mystrncpy(char *dst, const char *src, size_t n);
+
+/*
+* compares s1 and s2 up to n bytes or their respective ends
+* if both strings are equal (up to n bytes or their ends) return 0
+* returns positive number if s1 >
+* returns negative number is s1 <
 */
 int mystrncmp(const char *s1, const char *s2, size_t n);
 
+
 /*
-* compares both s1 and s2 strings up to their respective ends.
-* If the strings are equal returns 0
-* if s1 is superior to s2, returns a positive number
-* if s2 is superior to s2, returns a negative number
+* compares s1 and s2 up their respective ends
+* if both strings are equal return 0
+* returns positive number if s1 >
+* returns negative number is s1 <
 */
 int mystrcmp(const char *s1, const char *s2);
 
 /*
-* adds the string src at the end of dst.
-* The caller is responsible for having enough bytes to do this operation
+* concats the string src at the end of dst
+* the caller is responsible for
+* allocating enough space for dst to contain itself AND src
 */
-char *mystrcat(char *dst, const char *src);
+char *mystrcat(char *restrict dst, const char *restrict src);
 
 /*
-* creates a new dynamically allocated string
-* that contains s1 with s2 concatenated
+* concats the string src at the end of dst
+* takes at most n bytes from src to put at the end of dst
+* the caller is responsible for
+* allocating enough space for dst to contain itself AND src
+*/
+char *mystrncat(char *restrict dst, const char *restrict src, size_t ssize);
+
+/*
+* creates a dynamically allocated string
+* that contains s1 ans s2 glued together.
 */
 char *mystrconcat(char const *s1, const char *s2);
 
 /*
-* give the pointer inside the string s
-* to the first byte equal to c
-* if this fails, returns NULL
+* creates a dynamically allocated string
+* that contains s1 and s2 glued together.
+* up to s1size bytes of s1 are taken and s2size bytes of s2
+*/
+char *mystrnconcat(char const *s1, size_t s1size,
+    const char *s2, size_t s2size);
+
+/*
+* returns a pointer to the first occurence of c in the string s;
+* returns NULL if cannot find
 */
 char *mystrchr(const char *s, int c);
 
 /*
-* give the pointer inside the string s
-* to the last byte equal to c
-* if this fails, returns NULL
+* returns a pointer to the last occurence of c in the string s;
+* returns NULL if cannot find
 */
 char *mystrrchr(const char *s, int c);
 
 /*
-* give the pointer inside the block s
-* to the first byte equal to c
-* if this fails, returns NULL
+* converts string to an unsigned integer.
+* stores the last byte checked in endptr
 */
-void *mymemrchr(const void *s, int c, size_t n);
+unsigned int mystrtou(const char *restrict nptr,
+    char **restrict endptr,
+    int base);
 
 /*
-* give the pointer inside the block s
-* to the last byte equal to c
-* if this fails, returns NULL
+* converts string to an integer.
+* stores the last byte checked in endptr
 */
-void *mymemchr(const void *s, int c, size_t n);
+int mystrtoi(const char *restrict nptr,
+    char **restrict endptr,
+    int base);
 
-#endif
+#endif /* MYLIBC_H */

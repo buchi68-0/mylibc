@@ -5,20 +5,25 @@
 ## compiles
 ##
 
-SRC = mylibc/src/mystrlen.c	\
-	mylibc/src/mymemset.c	\
-	mylibc/src/mycalloc.c	\
-	mylibc/src/mystrnlen.c	\
-	mylibc/src/mymemmem.c	\
-	mylibc/src/mystrdup.c	\
-	mylibc/src/mystrcmp.c	\
-	mylibc/src/newstrlen.c	\
-	mylibc/src/mystrchr.c	\
+SRC = 	mylibc/src/mystrlen.c			\
+		mylibc/src/mymemset.c			\
+		mylibc/src/mycalloc.c			\
+		mylibc/src/mystrnlen.c			\
+		mylibc/src/mymemmem.c			\
+		mylibc/src/mystrdup.c			\
+		mylibc/src/mystrcmp.c			\
+		mylibc/src/newstrlen.c			\
+		mylibc/src/mystrchr.c			\
+		mylibc/src/mystrncopycat.c		\
+		mylibc/src/mystrtointegers.c	\
 
 CC := clang
 CFLAGS := 
 
-TEST_SRC = mylibc/tests/test_one.c
+TEST_SRC =  mylibc/tests/test_one.c	\
+	mylibc/tests/test_mystrchr.c	\
+	mylibc/tests/test_mystrcpy.c	\
+	mylibc/tests/test_mystrlen.c	\
 
 OBJ = $(SRC:.c=.o)
 
@@ -41,8 +46,8 @@ tests_run : unit_tests
 	./unit_tests
 
 coverage :
-	gcovr --exclude tests/ --gcov-executable "llvm-cov gcov"
-	gcovr --exclude tests/ --branches --gcov-executable "llvm-cov gcov"
+	gcovr --exclude mylibc/tests/ --gcov-executable "llvm-cov gcov"
+	gcovr --exclude mylibc/tests/ --branches --gcov-executable "llvm-cov gcov"
 
 debug : CC := epiclang
 debug : CFLAGS := -g

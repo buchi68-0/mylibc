@@ -9,5 +9,7 @@
     #define PRIVATE_MYLIBC_H
     #include <stddef.h>
 typedef unsigned long long ull_t;
+typedef unsigned long ulong_t;
+typedef unsigned int uint_t;
 typedef unsigned char uchar_t;
 #endif
