@@ -64,6 +64,8 @@ static void handle_flag(const char *restrict *nptr, int *flag)
 
 static int is_char_of(char c, int base)
 {
+    if (c == '\0')
+        return 0;
     if (base == 1)
         return (c == '1');
     if (base <= 10)
@@ -119,7 +121,7 @@ int mystrtoi(const char *restrict nptr,
     for (; is_char_of(*nptr, base); nptr++) {
         dig = get_digit(*nptr, base);
         if (check_signed_int_overflow(res, flag, base, dig)) {
-            res = max_pos * flag;
+            res = max_pos;
             break;
         }
         res *= base;
@@ -145,7 +147,7 @@ unsigned int mystrtou(const char *restrict nptr,
     for (; is_char_of(*nptr, base); nptr++) {
         dig = get_digit(*nptr, base);
         if (check_unsigned_int_overflow(res, base, dig)) {
-            res = max_uns * flag;
+            res = max_uns;
             break;
         }
         res *= base;
