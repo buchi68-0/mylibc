@@ -152,5 +152,5 @@ unsigned int mystrtou(const char *restrict nptr,
         res += dig;
     }
     handle_endptr_change(endptr, nptr);
-    return res * base;
+    return res * flag;
 }
