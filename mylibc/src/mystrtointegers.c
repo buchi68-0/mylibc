@@ -69,12 +69,12 @@ static int is_char_of(char c, int base)
     if (base == 1)
         return (c == '1');
     if (base <= 10)
-        return (c - '0' < base);
+        return (c >= '0' && (c - '0') < base);
     if (c >= '0' && c <= '9')
         return 1;
-    if (c >= 'a' && c <= base - 10 + 'a')
+    if (c >= 'a' && c <= (base - 10 + 'a'))
         return 1;
-    if (c >= 'A' && c <= base - 10 + 'A')
+    if (c >= 'A' && c <= (base - 10 + 'A'))
         return 1;
     return 0;
 }
