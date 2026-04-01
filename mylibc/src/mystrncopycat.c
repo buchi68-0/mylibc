@@ -7,7 +7,7 @@
 */
 
 
-#include "../includes/mylibc.h"
+#include "mylibc.h"
 #include <malloc.h>
 
 char *mystrncpy(char *dst, const char *src, size_t n)

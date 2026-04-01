@@ -5,6 +5,8 @@
 ## compiles
 ##
 
+NAME = "libmylibc.a"
+
 SRC = 	mylibc/src/mystrlen.c			\
 		mylibc/src/mymemset.c			\
 		mylibc/src/mycalloc.c			\
@@ -17,8 +19,7 @@ SRC = 	mylibc/src/mystrlen.c			\
 		mylibc/src/mystrncopycat.c		\
 		mylibc/src/mystrtointegers.c	\
 
-CC := clang
-CFLAGS := 
+CFLAGS = -I./mylibc/includes
 
 TEST_SRC =  mylibc/tests/test_one.c	\
 	mylibc/tests/test_mystrchr.c	\
@@ -27,20 +28,21 @@ TEST_SRC =  mylibc/tests/test_one.c	\
 
 OBJ = $(SRC:.c=.o)
 
-all : fclean re
+all : $(OBJ)
+	ar rc $(NAME) $(OBJ)
 
-re : $(OBJ)
-	ar rc "libmylibc.a" $(OBJ)
+re : fclean all
 
 fclean : clean
-	@rm -f "libmylibc.a"
+	@rm -f $(NAME)
 	@rm -f unit_tests*
 
 clean :
 	@rm -f $(OBJ)
 
 unit_tests : fclean
-	clang -g -o "unit_tests" $(SRC) $(TEST_SRC) -lcriterion --coverage -I.
+	$(CC) $(CFLAGS) -o "unit_tests" $(SRC) $(TEST_SRC) 	\
+	-lcriterion --coverage
 
 tests_run : unit_tests
 	./unit_tests
@@ -49,9 +51,11 @@ coverage :
 	gcovr --exclude mylibc/tests/ --gcov-executable "llvm-cov gcov"
 	gcovr --exclude mylibc/tests/ --branches --gcov-executable "llvm-cov gcov"
 
-debug : CC := epiclang
-debug : CFLAGS := -g
+debug : CC = epiclang
+debug : CFLAGS += -g -Wall
 debug : all
 
+full_debug : fclean debug
+
 %.o : %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@

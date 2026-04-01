@@ -5,7 +5,7 @@
 ** mystrlen; using unsigned long long to go faster
 */
 
-#include "../includes/mylibc.h"
+#include "mylibc.h"
 #include <stdint.h>
 
 static const unsigned long long STRLENCONST1 = 0x0101010101010101ULL;

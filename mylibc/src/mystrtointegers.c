@@ -6,7 +6,7 @@
 ** 2 funcs, to convert to int or unsigned int
 */
 
-#include "../includes/private_mylibc.h"
+#include "private_mylibc.h"
 #include <errno.h>
 
 static const int max_neg = ((unsigned)-1 / 2) + 1;

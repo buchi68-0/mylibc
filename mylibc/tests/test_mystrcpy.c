@@ -7,7 +7,7 @@
 */
 
 #include <criterion/criterion.h>
-#include "../includes/mylibc.h"
+#include "mylibc.h"
 
 Test(mystrcpy, test_null)
 {
@@ -80,4 +80,12 @@ Test(mystrncpy, test_classical)
     mystrncpy(buffer_dst, buffer_src, 15);
     cr_expect(mystrlen(buffer_src) == res);
     cr_assert(mystrlen(buffer_dst) == res);
+}
+
+Test(mystrcpy, test_move)
+{
+    char buffer_dst[25] = "000 Hello world!";
+
+    mystrcpy(buffer_dst, buffer_dst + 4);
+    cr_assert_str_eq(buffer_dst, "Hello world!", "got: %s", buffer_dst);
 }

@@ -6,7 +6,7 @@
 */
 
 #include <stddef.h>
-#include "../includes/mylibc.h"
+#include "mylibc.h"
 
 char *mystrchr(const char *s, int c)
 {
