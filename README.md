@@ -1,4 +1,4 @@
-# mylibc - reproduction of the C standard library, according the EPITECH's coding style
+# mylibc - reproduction of the C standard library, according to EPITECH's coding style
 <img
   src="https://www.c-language.org/logo.svg"
   alt="C logo"
@@ -7,7 +7,7 @@
 />
 
 > [!TIP]
-> This project is only aviable on Linux, and maybe on MacOS
+> This project is only available on Linux, and maybe on MacOS
 
 ## Quick start
 
@@ -30,7 +30,7 @@ Compile any executable binary, using -lmylibc. You probably need the -L option w
 
 ## Advanced start
 
-This help will allow you to use the library as a part of an existing project.  
+This help will allow you to use the library as part of an existing project.  
 
 ### 1. Clone the repository
 same as before  
@@ -69,7 +69,7 @@ you can automate the copy of the files by adding this after the recursive compil
 cp (lib/)mylibc/includes/mylibc.h includes/
 ```
 > [!CAUTION]
-> Please do not copy private headers. They often contains some typedefs and structs that I can't put directly in source files because of the coding style limitation. These could cause compatibility issues with other headers
+> Please do not copy private headers. They often contains some typedefs and structs that I can't put directly in source files because of the coding style limitation. These could cause compatibility issues with other headers.
 
 ## Unit testing
 
@@ -81,9 +81,9 @@ You can also run them recursively, if you want to unit test your *whole* project
 
 You can create a new issue to report a bug
 
-You can also maybe make a pull request, although it **must** be according to coding style and **must** come with it's own tests  
+You can also make a pull request, although it **must** be according to coding style and **must** come with it's own tests  
 
-in case of a successfull pull request, you will be put in the contributors page and your name will be mentionned in the file you helped in  
+in case of a successful pull request, you will be put in the contributors page and your name will be mentionned in the file you helped in  
 
 in case of an issue, you'll be thanked in the thanked section, followed by the number of issued you helped me fix
 
@@ -91,18 +91,18 @@ in case of an issue, you'll be thanked in the thanked section, followed by the n
 
 ### 1. Content of the pull request
 
-The pull request may **not in _any_ case** contain full features, like a reproduction of a libc func.  
+The pull request shall **not in _any_ case** contain full features, like a reproduction of a libc func.  
 
 This project is, on the first place, a way for me to understand deeply the glibc  
 
 You can:  
-- submit a fix for a already developed func, which is very well apreciated  
-- give an optimization for one.  
+- submit a fix for an already developed func, which is very well apreciated  
+- optimize further an already-existing feature  
 - develop a sub function that uses already existing functions to improve quality of life  
 
-In the case of an optimization, please send the least code, and more of like pseudo-code, because I then have to think more into the core of your idea and develop it  
+In the case of an optimization, refrain from sending actual code and consider sending pseudo-code instead, as I will have to think more into the core of your idea to develop it  
 
-If you develop your own subfunction, please think first about the improvement it would give. If it's not that much, let people make this function themselves (this a standard library, not somewhere to put everything you can think about)  
+If you develop your own subfunction, please think first about the improvement it would give. If the benefits is low, let people make this function themselves (this a standard library, not somewhere to put everything you can think about)  
 
 > [!NOTE]
 > malloc will NOT be redone, so yeah, you'll have to use it, and handle NULL
@@ -119,15 +119,15 @@ Here's a basic policy of coding style if you want to implement changes:
 - no trailing spaces at the end of a line
 - file headers (will add myself, if needed)
 - no #pragma once (for .h files)
-- a maximum of 2 depth for conditionnal blocs[^1]
+- a maximum of 2 indentations for conditionnal blocs[^1]
 
 ### 3. testing policy
 
-if you devellop a subfunction, you must include a full test file and get the maximum coverage you get.  
+if you develop a subfunction, you must include a complete test file and get the widest coverage as possible.  
 
-The function will be tested by me, and It's possible I go up to a LD_PRELOAD[^2] to test protection  
+The function will be tested by me, and It's possible I test it by using a LD_PRELOAD[^2] to test protection  
 
 The coverage must be at minimum 70%. Best would be 100% (there will be some files to allow to test a programm with redirected malloc)
 
-[^1]: conditionnal blocks are : for, while, if and switch. if then else is considered one of depth, but every "else if" are considered as +1 depth. If needed, use sub functions. switch are not recommended, since they use a lot of line, prefer using a for loop with an array of checks, which would be for/if
+[^1]: conditionnal blocks are : for, while, if and switch. if then else is considered one indentation, but every "else if" are considered as +1 indentation. If needed, use sub functions. Switch are not recommended, since they use a lot of lines, prefer using a for loop with an array of checks, which would be for/if
 [^2]: redirection of system funcs to test how error values are being handled (like malloc returning NULL)  
